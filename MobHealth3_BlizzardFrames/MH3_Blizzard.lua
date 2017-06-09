@@ -11,6 +11,8 @@
 if not MobHealth3 then error("<MH3 Blizzard Frames> MobHealth3 isn't loaded! Are you SURE you have MobHealth3 installed?"); return; end
 
 MH3Blizz = AceLibrary("AceAddon-2.0"):new("AceEvent-2.0", "AceConsole-2.0")
+local L = AceLibrary("AceLocale-2.0"):new("MH3Blizz")
+local waterfall = AceLibrary("Waterfall-1.0")
 
 --[[
     File-scope local vars
@@ -50,12 +52,12 @@ function MH3Blizz:OnInitialize()
     ptext:SetPoint("TOP", TargetFrameManaBar, "BOTTOM", MH3BlizzConfig.powerX-2, MH3BlizzConfig.powerY+22)
     ptext:SetTextColor(1, 1, 1, 1)
 
-    self:RegisterChatCommand({"/mh3b", "/mh3blizz"}, {
+	self.options = {
         type = "group",
 		args = {
 			abshealth = {
-				name = "Show absolute health",
-				desc = "Toggles showing absolute health on the target frame",
+				name = L"Show absolute health",
+				desc = L"Toggles showing absolute health on the target frame",
 				type = "toggle",
 				get = function() return MH3BlizzConfig.healthAbs end,
 				set = function(val)
@@ -64,8 +66,8 @@ function MH3Blizz:OnInitialize()
                 end,
 			},
 			perchealth = {
-				name = "Show health percentage",
-				desc = "Toggles showing percentage health on the target frame",
+				name = L"Show health percentage",
+				desc = L"Toggles showing percentage health on the target frame",
 				type = "toggle",
 				get = function() return MH3BlizzConfig.healthPerc end,
 				set = function(val)
@@ -74,8 +76,8 @@ function MH3Blizz:OnInitialize()
                 end,
 			},
 			abspower = {
-				name = "Show absolute power",
-				desc = "Toggles showing absolute mana/energy/rage on the target frame",
+				name = L"Show absolute power",
+				desc = L"Toggles showing absolute mana/energy/rage on the target frame",
 				type = "toggle",
 				get = function() return MH3BlizzConfig.powerAbs end,
 				set = function(val)
@@ -84,8 +86,8 @@ function MH3Blizz:OnInitialize()
                 end,
 			},
 			percpower = {
-				name = "Show power percentage",
-				desc = "Toggles showing percentage mana/energy/rage on the target frame",
+				name = L"Show power percentage",
+				desc = L"Toggles showing percentage mana/energy/rage on the target frame",
 				type = "toggle",
 				get = function() return MH3BlizzConfig.powerPerc end,
 				set = function(val)
@@ -94,8 +96,8 @@ function MH3Blizz:OnInitialize()
                 end,
 			},
 			healthx = {
-				name = "Health X offset",
-				desc = "Adjusts the X offset of the health text",
+				name = L"Health X offset",
+				desc = L"Adjusts the X offset of the health text",
 				type = "text",
 				usage = "<number>",
 				get = function() return MH3BlizzConfig.healthX end,
@@ -105,8 +107,8 @@ function MH3Blizz:OnInitialize()
                 end,
 			},
 			healthy = {
-				name = "Health Y offset",
-				desc = "Adjusts the Y offset of the health text",
+				name = L"Health Y offset",
+				desc = L"Adjusts the Y offset of the health text",
 				type = "text",
 				usage = "<number>",
 				get = function() return MH3BlizzConfig.healthY end,
@@ -116,8 +118,8 @@ function MH3Blizz:OnInitialize()
                 end,
 			},
 			powerx = {
-				name = "Power X offset",
-				desc = "Adjusts the X offset of the power text",
+				name = L"Power X offset",
+				desc = L"Adjusts the X offset of the power text",
 				type = "text",
 				usage = "<number>",
 				get = function() return MH3BlizzConfig.powerX end,
@@ -127,8 +129,8 @@ function MH3Blizz:OnInitialize()
                 end,
 			},
 			powery = {
-				name = "Power Y offset",
-				desc = "Adjusts the Y offset of the power text",
+				name = L"Power Y offset",
+				desc = L"Adjusts the Y offset of the power text",
 				type = "text",
 				usage = "<number>",
 				get = function() return MH3BlizzConfig.powerY end,
@@ -138,8 +140,12 @@ function MH3Blizz:OnInitialize()
                 end,
 			},
 		},
-	})
-    
+	}
+
+	self:RegisterChatCommand({"/mh3bcl", "/mh3blizzcl"}, self.options)
+	self:RegisterChatCommand({ "/mh3b", "/mh3blizz"}, function() waterfall:Open('MH3Blizz') end)
+	waterfall:Register('MH3Blizz', 'aceOptions', self.options, 'title','MH3Blizz 1.2. Revision: 12749','colorR', 0.8, 'colorG', 0.6, 'colorB', 0.7) 
+
     -- WARNING WARNING WARNING
     -- BIG DIRTY HACK AHEAD
     
@@ -227,4 +233,3 @@ function MH3Blizz:PowerUpdate()
 
     ptext:SetText(absText.." "..percText)
 end
-
