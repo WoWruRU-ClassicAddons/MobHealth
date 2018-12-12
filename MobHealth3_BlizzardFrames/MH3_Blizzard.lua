@@ -11,7 +11,7 @@
 if not MobHealth3 then error("<MH3 Blizzard Frames> MobHealth3 isn't loaded! Are you SURE you have MobHealth3 installed?"); return; end
 
 MH3Blizz = AceLibrary("AceAddon-2.0"):new("AceEvent-2.0", "AceConsole-2.0")
-local L = AceLibrary("AceLocale-2.0"):new("MH3Blizz")
+local L = AceLibrary("AceLocale-2.2"):new("MH3Blizz")
 local waterfall = AceLibrary("Waterfall-1.0")
 
 --[[
@@ -56,8 +56,8 @@ function MH3Blizz:OnInitialize()
         type = "group",
 		args = {
 			abshealth = {
-				name = L"Show absolute health",
-				desc = L"Toggles showing absolute health on the target frame",
+				name = L["Show absolute health"],
+				desc = L["Toggles showing absolute health on the target frame"],
 				type = "toggle",
 				get = function() return MH3BlizzConfig.healthAbs end,
 				set = function(val)
@@ -66,8 +66,8 @@ function MH3Blizz:OnInitialize()
                 end,
 			},
 			perchealth = {
-				name = L"Show health percentage",
-				desc = L"Toggles showing percentage health on the target frame",
+				name = L["Show health percentage"],
+				desc = L["Toggles showing percentage health on the target frame"],
 				type = "toggle",
 				get = function() return MH3BlizzConfig.healthPerc end,
 				set = function(val)
@@ -76,8 +76,8 @@ function MH3Blizz:OnInitialize()
                 end,
 			},
 			abspower = {
-				name = L"Show absolute power",
-				desc = L"Toggles showing absolute mana/energy/rage on the target frame",
+				name = L["Show absolute power"],
+				desc = L["Toggles showing absolute mana/energy/rage on the target frame"],
 				type = "toggle",
 				get = function() return MH3BlizzConfig.powerAbs end,
 				set = function(val)
@@ -86,8 +86,8 @@ function MH3Blizz:OnInitialize()
                 end,
 			},
 			percpower = {
-				name = L"Show power percentage",
-				desc = L"Toggles showing percentage mana/energy/rage on the target frame",
+				name = L["Show power percentage"],
+				desc = L["Toggles showing percentage mana/energy/rage on the target frame"],
 				type = "toggle",
 				get = function() return MH3BlizzConfig.powerPerc end,
 				set = function(val)
@@ -96,8 +96,8 @@ function MH3Blizz:OnInitialize()
                 end,
 			},
 			healthx = {
-				name = L"Health X offset",
-				desc = L"Adjusts the X offset of the health text",
+				name = L["Health X offset"],
+				desc = L["Adjusts the X offset of the health text"],
 				type = "text",
 				usage = "<number>",
 				get = function() return MH3BlizzConfig.healthX end,
@@ -107,8 +107,8 @@ function MH3Blizz:OnInitialize()
                 end,
 			},
 			healthy = {
-				name = L"Health Y offset",
-				desc = L"Adjusts the Y offset of the health text",
+				name = L["Health Y offset"],
+				desc = L["Adjusts the Y offset of the health text"],
 				type = "text",
 				usage = "<number>",
 				get = function() return MH3BlizzConfig.healthY end,
@@ -118,8 +118,8 @@ function MH3Blizz:OnInitialize()
                 end,
 			},
 			powerx = {
-				name = L"Power X offset",
-				desc = L"Adjusts the X offset of the power text",
+				name = L["Power X offset"],
+				desc = L["Adjusts the X offset of the power text"],
 				type = "text",
 				usage = "<number>",
 				get = function() return MH3BlizzConfig.powerX end,
@@ -129,8 +129,8 @@ function MH3Blizz:OnInitialize()
                 end,
 			},
 			powery = {
-				name = L"Power Y offset",
-				desc = L"Adjusts the Y offset of the power text",
+				name = L["Power Y offset"],
+				desc = L["Adjusts the Y offset of the power text"],
 				type = "text",
 				usage = "<number>",
 				get = function() return MH3BlizzConfig.powerY end,
